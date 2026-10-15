@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rakumi Data — Win 20GB data or ₦5,000 airtime</title>
+<meta name="description" content="Rakumi is giving out 20GB data and ₦5,000 airtime on MTN, Airtel and Glo. Pick your network and claim your chance now.">
+<meta name="theme-color" content="#18214A">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rakumi is giving out 20GB data 🎁">
+<meta property="og:description" content="Win 20GB data or ₦5,000 airtime on MTN, Airtel or Glo. Claim your chance now.">
+<meta property="og:image" content="/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2318214A'/%3E%3Ctext x='16' y='23' font-family='Arial' font-weight='900' font-size='19' text-anchor='middle' fill='%23F5EBDA'%3ER%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#F5EBDA;--bg-2:#EDDFC6;--paper:#FFF9EF;--line:#E2D1B3;
+  --ink:#18214A;--ink-2:#45434F;--muted:#6A6470;--rust:#B4481A;
+  --mtn:#FFCB05;--airtel:#D7261E;--glo:#1F7F2C;
+  --r:12px;--gut:16px;--max:1120px;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--sans);overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* top bar */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:14px;padding-bottom:14px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:19px;letter-spacing:-.02em}
+.brand i {
+  display: block;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: var(--ink); /* keeps a dark background behind the image */
+  overflow: hidden;
+  flex: none;
+}
+.brand i img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.brand small{display:block;font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--rust);margin-top:-3px}
+.net-pill{display:flex;gap:4px}
+.net-pill span{width:10px;height:10px;border-radius:50%}
+
+/* trust score badge */
+.trust-badge{display:inline-flex;align-items:center;gap:6px;background:var(--paper);border:1px solid var(--line);border-radius:40px;padding:6px 14px 6px 12px;font-size:14px;font-weight:700;color:var(--ink);box-shadow:0 2px 0 rgba(24,33,74,.08)}
+.trust-badge svg{width:18px;height:18px;color:var(--glo)}
+
+/* splash */
+#splash{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;min-height:100svh;text-align:center;padding:0 var(--gut)}
+#splash .gift{font-size:56px;line-height:1;margin:0 0 14px;animation:bob 1.8s ease-in-out infinite}
+#splash h1{font-size:clamp(28px,7vw,44px);margin:0 0 10px;font-weight:850;max-width:14em}
+#splash p{font-size:clamp(16px,4vw,18px);color:var(--ink-2);margin:0 0 24px}
+#splash .btn{display:inline-flex;align-items:center;gap:6px;background:var(--rust);color:#fff;border:none;font:inherit;font-weight:750;border-radius:12px;padding:14px 28px;cursor:pointer;font-size:18px;box-shadow:0 3px 0 rgba(24,33,74,.25);animation:pulse 2s ease-in-out infinite}
+#splash .btn svg{width:18px;height:18px}
+#splash .btn:hover{filter:brightness(1.05)}
+@keyframes bob{50%{transform:translateY(-6px)}}
+@keyframes pulse{0%,100%{box-shadow:0 3px 0 rgba(24,33,74,.25),0 0 0 0 rgba(180,72,26,.45)}60%{box-shadow:0 3px 0 rgba(24,33,74,.25),0 0 0 14px rgba(180,72,26,0)}}
+
+/* hero */
+.hero{display:grid;gap:20px;padding-top:16px;padding-bottom:32px}
+.kicker{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--rust);margin:0 0 8px}
+.kicker::before{content:"";width:18px;height:2px;background:currentColor}
+h1{font-size:clamp(30px,8vw,48px);line-height:1.02;letter-spacing:-.03em;margin:0 0 10px;font-weight:850}
+h1 em{font-style:normal;color:var(--rust);white-space:nowrap}
+.lede{font-size:clamp(16px,4vw,18px);color:var(--ink-2);margin:0 0 16px;max-width:28em}
+.lede b{color:var(--ink)}
+.live{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:650;color:var(--ink-2);margin:0 0 14px}
+.live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--glo);box-shadow:0 0 0 3px rgba(31,127,44,.2);animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{50%{opacity:.35}}
+.pick{font-size:14px;font-weight:700;margin:0 0 8px}
+.nets{display:grid;gap:8px;margin:0 0 12px;padding:0;list-style:none}
+.net{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:56px;padding:0 14px 0 16px;border-radius:var(--r);text-decoration:none;font-weight:700;box-shadow:0 2px 0 rgba(24,33,74,.15);transition:transform .1s ease,box-shadow .1s ease}
+.net:hover{transform:translateY(-1px);box-shadow:0 3px 0 rgba(24,33,74,.25)}
+.net:active{transform:translateY(1px);box-shadow:0 1px 0 rgba(24,33,74,.25)}
+.net .nm{font-size:20px;letter-spacing:-.015em}
+.net .cta{display:flex;align-items:center;gap:4px;font-size:15px}
+.net svg{width:18px;height:18px;flex:none}
+.net.mtn{background:var(--mtn);color:#111}
+.net.airtel{background:var(--airtel);color:#fff}
+.net.glo{background:var(--glo);color:#fff}
+.net[aria-disabled=true]{opacity:.55;pointer-events:none}
+.fine{font-size:12px;color:var(--muted);margin:0;max-width:32em}
+.fine b{color:var(--ink-2)}
+
+/* trust icons */
+.trust{display:flex;flex-wrap:wrap;gap:6px 12px;margin:14px 0 0;padding:0;list-style:none;font-size:13px;font-weight:600;color:var(--ink-2)}
+.trust li{display:flex;align-items:center;gap:5px}
+.trust svg{width:16px;height:16px;color:var(--glo);flex:none}
+
+/* visual */
+.visual{position:relative;justify-self:center;width:min(100%,260px)}
+.reel{position:relative;border-radius:18px;overflow:hidden;background:var(--bg-2);aspect-ratio:260/460;box-shadow:0 1px 0 var(--line),0 16px 32px -16px rgba(24,33,74,.3)}
+.reel img{width:100%;height:100%;object-fit:cover}
+.reel .tag{position:absolute;left:8px;top:8px;display:flex;align-items:center;gap:4px;padding:4px 8px;border-radius:6px;background:rgba(17,17,17,.5);color:#fff;font-size:11px;font-weight:600}
+.reel .tag svg{width:10px;height:10px}
+.voucher{position:absolute;left:-4px;bottom:20px;background:var(--paper);border:2px dashed var(--ink);border-radius:10px;padding:8px 12px 8px 10px;transform:rotate(-3deg);box-shadow:0 6px 16px -8px rgba(24,33,74,.4)}
+.voucher b{display:block;font-size:26px;line-height:1;letter-spacing:-.02em}
+.voucher span{display:block;font-size:11px;font-weight:600;color:var(--ink-2);margin-top:2px}
+
+/* sections */
+.sec{padding-top:36px;padding-bottom:36px;border-top:1px solid var(--line)}
+.sec h2{font-size:clamp(24px,6vw,32px);line-height:1.1;letter-spacing:-.02em;margin:0 0 6px;font-weight:850}
+.sec .sub{color:var(--ink-2);margin:0 0 20px}
+
+/* recent activity */
+.feed{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.feed li{display:flex;align-items:center;gap:10px;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:14px}
+.feed .dot{width:10px;height:10px;border-radius:50%;flex:none}
+.feed time{margin-left:auto;color:var(--muted);font-size:12px;white-space:nowrap}
+
+/* steps */
+.steps{display:grid;gap:12px;margin:0;padding:0;list-style:none;counter-reset:s}
+.steps li{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px 16px 16px 60px;counter-increment:s}
+.steps li::before{content:counter(s);position:absolute;left:16px;top:16px;display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--bg);font-weight:800}
+.steps b{display:block;font-size:17px;margin-bottom:2px}
+.steps span{color:var(--ink-2);font-size:15px}
+
+/* testimonials carousel */
+.testimonial-carousel{position:relative;max-width:720px;margin:0 auto;min-height:200px}
+.quote-slide{display:none;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:24px 28px;box-shadow:0 8px 20px -12px rgba(24,33,74,.2);animation:fadeIn .5s ease}
+.quote-slide.active{display:block}
+.quote-slide p{margin:0 0 14px;font-size:17px;line-height:1.55;font-style:italic;color:var(--ink-2)}
+.quote-slide cite{font-style:normal;font-size:14px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px}
+.quote-slide cite::before{content:"—";color:var(--rust);font-weight:800}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:18px}
+.carousel-dots button{width:10px;height:10px;border-radius:50%;border:none;background:var(--line);cursor:pointer;padding:0;transition:background .2s,transform .2s}
+.carousel-dots button.active{background:var(--rust);transform:scale(1.2)}
+
+/* faq removed as requested */
+
+/* final cta */
+.final{text-align:center}
+.final .nets,.final .fine{max-width:420px;margin-left:auto;margin-right:auto}
+.final .nets{margin-top:16px}
+
+footer{padding-top:20px;padding-bottom:96px;font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
+footer p{margin:0}
+
+/* sticky claim bar (mobile) */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:8px var(--gut) calc(8px + env(safe-area-inset-bottom));background:rgba(245,235,218,.95);border-top:1px solid var(--line);display:flex;gap:6px;transform:translateY(110%);transition:transform .2s ease}
+.sticky.on{transform:none}
+.sticky .net{flex:1;min-height:42px;padding:0 8px;justify-content:center}
+.sticky .net .nm{font-size:15px}
+
+/* toast */
+.toast{position:fixed;left:50%;top:16px;transform:translateX(-50%);z-index:30;background:var(--ink);color:#fff;padding:10px 14px;border-radius:8px;font-size:14px;font-weight:600;max-width:calc(100% - 24px);box-shadow:0 8px 20px -6px rgba(0,0,0,.4)}
+[hidden]{display:none!important}
+
+/* media */
+@media (min-width:860px){
+  :root{--gut:28px}
+  .hero{grid-template-columns:1.2fr .8fr;gap:16px;align-items:center;padding-top:24px;padding-bottom:40px}
+  .visual{width:260px}
+  .voucher{left:-20px}
+  .steps,.quotes{grid-template-columns:repeat(3,1fr)}
+  .feed{grid-template-columns:repeat(2,1fr)}
+  .sticky{display:none}
+  footer{padding-bottom:24px}
+}
+
+
+ .hero-copy{
+  position:relative;
+  padding:24px 20px;
+  border-radius:var(--r);
+  overflow:hidden;
+  background-image:url('/img/bgg.jpg');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  isolation:isolate;
+}
+
+/* dark overlay so the text stays readable on any image */
+.hero-copy::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(24,33,74,.55),rgba(24,33,74,.72));
+  z-index:-1;
+}
+
+ .hero-copy .kicker{color:#F5C9A8}
+.hero-copy h1{color:#FFF9EF}
+.hero-copy h1 em{color:#FFCB05}
+.hero-copy .lede{color:#EDDFC6}
+.hero-copy .lede b{color:#FFFFFF}
+</style>
+</head>
+<body>
+
+<!-- Splash screen -->
+<section id="splash" class="wrap">
+  <div class="gift" aria-hidden="true">🎁</div>
+  <h1>Rakumi is giving out data &amp; airtime</h1>
+  <p>20GB data and ₦5,000 airtime up for grabs on MTN, Airtel and Glo</p>
+  <button class="btn" id="continueBtn">Claim now <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></button>
+</section>
+
+<!-- Main content (hidden until Claim now is tapped) -->
+<main id="main-content" hidden>
+  <header class="wrap top">
+   <a class="brand" href="/" aria-label="Rakumi Data home"><i aria-hidden="true"><img src="/img/logo.jpeg" alt="Rakumi logo"></i><span>Rakumi<small>DATA</small></span></a>
+    <span class="net-pill" aria-label="MTN, Airtel and Glo"><span style="background:var(--mtn)"></span><span style="background:var(--airtel)"></span><span style="background:var(--glo)"></span></span>
+  </header>
+
+  <section class="wrap hero">
+    
+    <div class="hero-copy">
+      <p class="kicker">Rakumi ya kawo data</p>
+      <h1>Win <em>20GB data</em> or <em>₦5,000 airtime</em></h1>
+      <p class="lede"><b>Rakumi is giving out data and airtime.</b> Pick your network, join the draw in seconds, and you could be the next winner.</p>
+      
+      <div class="trust-badge" style="margin-bottom:0">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Trust Score: 98.7%
+      </div>
+    </div>
+    <div>
+      <p class="live" id="live" hidden></p>
+
+      <p class="pick" id="networks">Choose your network to claim</p>
+      <ul class="nets" aria-labelledby="networks">
+        <li><a class="net mtn" data-net="mtn" href="/go/mtn"><span class="nm">MTN</span><span class="cta">Claim now <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></span></a></li>
+        <li><a class="net airtel" data-net="airtel" href="/go/airtel"><span class="nm">Airtel</span><span class="cta">Claim now <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></span></a></li>
+        <li><a class="net glo" data-net="glo" href="/go/glo"><span class="nm">Glo</span><span class="cta">Claim now <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></span></a></li>
+      </ul>
+    </div>
+
+    <div class="visual">
+      <div class="reel">
+        <img src="/img/rakumi-street.webp" width="260" height="460" alt="AI video still: a camel in sunglasses and a gold chain walking down a Nigerian street with two friends" fetchpriority="high" decoding="async">
+        <span class="tag"><svg viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M3 1.5v7l5-3.5z"/></svg>Trending now</span>
+      </div>
+      <div class="voucher" aria-hidden="true"><b>20GB</b><span>or ₦5,000 airtime</span></div>
+    </div>
+  </section>
+
+  <!-- Live activity: real recent claim clicks from /api/config -->
+  <section class="wrap sec" id="activity" hidden>
+    <h2>People are claiming right now</h2>
+    <p class="sub">Don't be the last on your street to join.</p>
+    <ul class="feed" id="feed"></ul>
+  </section>
+
+  <!-- What people are saying: custom carousel with 5 testimonials (auto-rotating) -->
+  <section class="wrap sec" id="testimonials">
+    <h2>What people are saying</h2>
+    <p class="sub">Real messages from people who joined.</p>
+    <div class="testimonial-carousel" id="testimonialCarousel">
+      <!-- Slide 1 -->
+      <div class="quote-slide active" data-index="0">
+        <p>“I never believed it until I got my 20GB data alert. Rakumi is real! I even told my brother to join with his Airtel line.”</p>
+        <cite>Chinedu O., Lagos</cite>
+      </div>
+      <!-- Slide 2 -->
+      <div class="quote-slide" data-index="1">
+        <p>“The ₦5,000 airtime came exactly when I needed it. I used it to call my family and also bought small data. God bless Rakumi.”</p>
+        <cite>Aisha B., Kano</cite>
+      </div>
+      <!-- Slide 3 -->
+      <div class="quote-slide" data-index="2">
+        <p>“I tapped the Glo button just for fun, and two days later I received 20GB. My village people were surprised! This is legit.”</p>
+        <cite>Emeka N., Enugu</cite>
+      </div>
+      <!-- Slide 4 -->
+      <div class="quote-slide" data-index="3">
+        <p>“MTN data finished, I was frustrated. Saw Rakumi link on WhatsApp, claimed, and boom — 20GB landed. I've told all my customers.”</p>
+        <cite>Folake A., Ibadan</cite>
+      </div>
+      <!-- Slide 5 -->
+      <div class="quote-slide" data-index="4">
+        <p>“I won ₦5,000 airtime last week. I didn't pay anything. Rakumi is the realest giveaway I've ever seen. Thank you!”</p>
+        <cite>Ibrahim S., Abuja</cite>
+      </div>
+    </div>
+    <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Testimonial navigation"></div>
+  </section>
+
+  <section class="wrap sec final" id="final">
+    <h2>Your turn to win</h2>
+    <ul class="nets" aria-label="Choose your network">
+      <li><a class="net mtn" data-net="mtn" href="/go/mtn"><span class="nm">MTN</span><span class="cta">Claim now <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></span></a></li>
+      <li><a class="net airtel" data-net="airtel" href="/go/airtel"><span class="nm">Airtel</span><span class="cta">Claim now <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></span></a></li>
+      <li><a class="net glo" data-net="glo" href="/go/glo"><span class="nm">Glo</span><span class="cta">Claim now <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></span></a></li>
+    </ul>
+  </section>
+</main>
+
+<nav class="sticky" id="sticky" aria-label="Quick claim">
+  <a class="net mtn" data-net="mtn" href="/go/mtn"><span class="nm">MTN</span></a>
+  <a class="net airtel" data-net="airtel" href="/go/airtel"><span class="nm">Airtel</span></a>
+  <a class="net glo" data-net="glo" href="/go/glo"><span class="nm">Glo</span></a>
+</nav>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+(function(){
+  var NAMES={mtn:'MTN',airtel:'Airtel',glo:'Glo'};
+  var COLORS={mtn:'var(--mtn)',airtel:'var(--airtel)',glo:'var(--glo)'};
+  var qs=new URLSearchParams(location.search);
+  function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+
+  // Visitor id (unique visitor counting) and traffic source.
+  var vid=store('rk_vid');
+  if(!vid){vid=Math.random().toString(36).slice(2,10)+Date.now().toString(36);store('rk_vid',vid)}
+  var src=qs.get('src')||qs.get('utm_source')||(qs.get('fbclid')&&'facebook')||(qs.get('ttclid')&&'tiktok')||(qs.get('gclid')&&'google');
+  if(!src&&document.referrer){try{var h=new URL(document.referrer).hostname;if(h!==location.hostname)src=h.replace(/^(www|m|l|lm)\./,'').split('.')[0]}catch(e){}}
+  if(src)store('rk_src',src);else src=store('rk_src')||'direct';
+
+  var tail='?v='+encodeURIComponent(vid)+'&s='+encodeURIComponent(src);
+  document.querySelectorAll('a[data-net]').forEach(function(a){a.href='/go/'+a.dataset.net+tail});
+
+  // Record the visit without blocking anything.
+  var payload=JSON.stringify({v:vid,s:src,r:document.referrer});
+  if(!(navigator.sendBeacon&&navigator.sendBeacon('/api/track',new Blob([payload],{type:'text/plain'})))){
+    fetch('/api/track',{method:'POST',body:payload,keepalive:true}).catch(function(){});
+  }
+
+  var yr=document.getElementById('yr');
+  if(yr)yr.textContent=new Date().getFullYear();
+
+  var toast=document.getElementById('toast');
+  function say(msg){toast.textContent=msg;toast.hidden=false;clearTimeout(say.t);say.t=setTimeout(function(){toast.hidden=true},4500)}
+  var soon=qs.get('soon');
+
+  // Sticky claim bar once the hero buttons scroll away, until the final buttons come into view.
+  var sticky=document.getElementById('sticky'),first=document.querySelector('.hero .nets'),final=document.getElementById('final');
+  var ticking=false;
+  function place(){ticking=false;sticky.classList.toggle('on',first.getBoundingClientRect().bottom<0&&final.getBoundingClientRect().top>innerHeight)}
+  addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(place)}},{passive:true});
+
+  function ago(ts){var m=Math.max(1,Math.round((Date.now()-ts)/6e4));return m<60?m+' min ago':Math.round(m/60)+' hr ago'}
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return'&#'+c.charCodeAt(0)+';'})}
+  function fmt(n){return Number(n).toLocaleString('en-NG')}
+
+  function loadConfig(){
+    fetch('/api/config').then(function(r){return r.json()}).then(function(c){
+      if(c.priceNote)document.querySelectorAll('[data-price]').forEach(function(el){el.textContent=c.priceNote});
+
+      // subscribers is the real number set in admin; claims only counts button taps.
+      var live=document.getElementById('live');
+      if(c.subscribers>0){live.textContent=fmt(c.subscribers)+' people have joined the draw';live.hidden=false}
+      else if(c.claims>0){live.textContent=fmt(c.claims)+' claims started so far';live.hidden=false}
+
+      var recent=(c.recent||[]).filter(function(e){return NAMES[e.n]});
+      if(recent.length){
+        document.getElementById('feed').innerHTML=recent.map(function(e){
+          return '<li><span class="dot" style="background:'+COLORS[e.n]+'"></span>Someone on '+NAMES[e.n]+' started a claim<time>'+ago(e.ts)+'</time></li>';
+        }).join('');
+        document.getElementById('activity').hidden=false;
+      }
+
+      // Custom testimonials are already hardcoded — but if admin adds any, we ignore or could merge.
+      // We are using the fixed 5 slides, so we don't need the API testimonials here.
+      // But if you want to still show admin testimonials as extra, uncomment the following block.
+      // However, the requirement is to have 5 custom users, so we keep the hardcoded carousel.
+    }).catch(function(){});
+  }
+
+  function openMain(){
+    document.getElementById('splash').hidden=true;
+    document.getElementById('main-content').hidden=false;
+    loadConfig();
+  }
+
+  document.getElementById('continueBtn').addEventListener('click',openMain);
+
+  // Coming back from /go with ?soon=<net>: skip the splash and show the notice.
+  if(NAMES[soon]){openMain();say(NAMES[soon]+' claims open shortly — please try again in a few minutes.')}
+
+  /* ---- Testimonial Carousel Logic ---- */
+  var slides = document.querySelectorAll('.quote-slide');
+  var dotsContainer = document.getElementById('carouselDots');
+  var currentIndex = 0;
+  var slideInterval;
+
+  // Create dots
+  if (dotsContainer && slides.length) {
+    slides.forEach((_, i) => {
+      var btn = document.createElement('button');
+      btn.setAttribute('role', 'tab');
+      btn.setAttribute('aria-label', 'Testimonial ' + (i+1));
+      btn.dataset.index = i;
+      if (i === 0) btn.classList.add('active');
+      btn.addEventListener('click', function() {
+        goToSlide(parseInt(this.dataset.index));
+        resetTimer();
+      });
+      dotsContainer.appendChild(btn);
+    });
+  }
+
+  function goToSlide(index) {
+    if (index === currentIndex) return;
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+    var dots = dotsContainer ? dotsContainer.querySelectorAll('button') : [];
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+    currentIndex = index;
+  }
+
+  function nextSlide() {
+    var next = (currentIndex + 1) % slides.length;
+    goToSlide(next);
+  }
+
+  function startTimer() {
+    if (slideInterval) clearInterval(slideInterval);
+    slideInterval = setInterval(nextSlide, 4000); // changes every 4 seconds
+  }
+
+  function resetTimer() {
+    clearInterval(slideInterval);
+    startTimer();
+  }
+
+  if (slides.length > 1) {
+    startTimer();
+    // Pause on hover (optional but nice)
+    var carousel = document.getElementById('testimonialCarousel');
+    if (carousel) {
+      carousel.addEventListener('mouseenter', () => clearInterval(slideInterval));
+      carousel.addEventListener('mouseleave', startTimer);
+    }
+  }
+})();
+</script>
+</body>
+</html>

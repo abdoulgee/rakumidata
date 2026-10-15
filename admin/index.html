@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Rakumi Admin</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2318214A'/%3E%3Ctext x='16' y='23' font-family='Arial' font-weight='900' font-size='19' text-anchor='middle' fill='%23F5EBDA'%3ER%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#F6F2EA;--card:#FFFFFF;--line:#E7DFD0;--grid:#ECE6DA;
+  --ink:#18214A;--ink-2:#4A4856;--muted:#736D7A;
+  --accent:#18214A;--accent-ink:#fff;
+  --s-views:#3446A0;--s-clicks:#B4481A;--s-bar:#3446A0;
+  --ok:#1F7F2C;--warn-bg:#FFF4D6;--warn-ink:#6B4A00;--err:#B3261E;--err-bg:#FDECEA;
+  --mtn:#FFCB05;--airtel:#D7261E;--glo:#1F7F2C;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#12141C;--card:#1B1E29;--line:#2B2F3D;--grid:#262A37;
+    --ink:#EEF0F7;--ink-2:#C2C5D2;--muted:#9295A6;
+    --accent:#E9DDC6;--accent-ink:#12141C;
+    --s-views:#8C9BEA;--s-clicks:#F08A5A;--s-bar:#8C9BEA;
+    --warn-bg:#3A2F12;--warn-ink:#F3D98B;--err:#FF8A80;--err-bg:#3A1C1C;
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans)}
+:focus-visible{outline:3px solid var(--s-views);outline-offset:2px;border-radius:6px}
+h1,h2,h3{margin:0;letter-spacing:-.02em}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+[hidden]{display:none!important}
+.num{font-variant-numeric:tabular-nums}
+
+button,.btn{font:inherit;font-weight:650;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 14px;cursor:pointer;min-height:40px}
+button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+button:disabled{opacity:.55;cursor:default}
+button.link{border:0;background:none;padding:6px 8px;min-height:0;color:var(--muted);font-weight:600}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 12px;width:100%;min-height:42px}
+textarea{resize:vertical;min-height:72px}
+input[aria-invalid=true]{border-color:var(--err)}
+label{display:block;font-weight:650;font-size:14px;margin:0 0 6px}
+.hint{font-size:13px;color:var(--muted);margin:6px 0 0}
+.err{color:var(--err);font-size:13px;margin:6px 0 0}
+
+/* login */
+.login{min-height:100vh;display:grid;place-items:center;padding:16px}
+.login form{width:min(100%,360px);background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px}
+.login h1{font-size:22px;margin-bottom:4px}
+.login p.sub{color:var(--muted);margin:0 0 22px}
+.field{margin-bottom:16px}
+.alert{border-radius:10px;padding:10px 12px;font-size:14px;margin:0 0 16px}
+.alert.bad{background:var(--err-bg);color:var(--err)}
+.alert.warn{background:var(--warn-bg);color:var(--warn-ink)}
+
+/* app */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 0}
+.bar h1{font-size:20px;display:flex;align-items:center;gap:10px}
+.bar h1 i{display:grid;place-items:center;width:30px;height:30px;border-radius:8px;background:#18214A;color:#F5EBDA;font-style:normal;font-size:16px;font-weight:900}
+.bar .acts{display:flex;align-items:center;gap:8px}
+.updated{font-size:13px;color:var(--muted)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.tabs button{border:0;background:none;border-radius:0;border-bottom:2px solid transparent;padding:10px 12px;color:var(--muted)}
+.tabs button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--ink)}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.card h2{font-size:16px;margin-bottom:2px}
+.card .cap{font-size:13px;color:var(--muted);margin:0 0 14px}
+.grid{display:grid;gap:14px;margin-bottom:14px;align-items:start}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:14px}
+.kpi .lbl{font-size:13px;color:var(--muted);font-weight:600}
+.kpi .val{font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.15}
+.kpi .dlt{font-size:13px;color:var(--ink-2)}
+.kpi.hero .val{font-size:48px}
+
+/* network bars */
+.nb{display:grid;grid-template-columns:76px 1fr 64px;align-items:center;gap:10px;margin:10px 0}
+.nb .nm{display:flex;align-items:center;gap:8px;font-weight:650}
+.sw{width:10px;height:10px;border-radius:3px;flex:none}
+.nb .track{height:20px;position:relative}
+.nb .fill{position:absolute;left:0;top:0;bottom:0;background:var(--s-bar);border-radius:0 4px 4px 0;min-width:2px}
+.nb .v{text-align:right;font-weight:650}
+.nb .v small{display:block;color:var(--muted);font-weight:500;font-size:12px;line-height:1}
+
+/* charts */
+.chart{position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart .gl{stroke:var(--grid);stroke-width:1}
+.chart text{fill:var(--muted);font-size:11px;font-family:var(--sans)}
+.chart .hit{fill:transparent;cursor:crosshair}
+.chart .hit:hover+.mk,.chart .mk.on{opacity:.75}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-size:13px;padding:6px 9px;border-radius:8px;white-space:nowrap;transform:translate(-50%,-100%);margin-top:-8px;z-index:5}
+.tip b{display:block}
+
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:12px;font-weight:650;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 10px;border-bottom:1px solid var(--grid);white-space:nowrap}
+td.r,th.r{text-align:right}
+.tbl{overflow-x:auto;margin:0 -18px;padding:0 18px}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:650;padding:2px 8px;border-radius:999px;border:1px solid var(--line)}
+.pill.c{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.empty{color:var(--muted);text-align:center;padding:28px 10px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{border:0;border-radius:0;min-height:34px;padding:6px 12px;font-size:13px}
+.seg button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.rowhead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+
+/* settings */
+.links .lk{display:grid;gap:6px;margin-bottom:18px}
+.lk .top{display:flex;align-items:center;gap:8px}
+.lk code{font-size:12px;color:var(--muted);word-break:break-all}
+.tst{border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:10px;display:grid;gap:10px}
+.tst .r2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.savebar{position:sticky;bottom:0;background:var(--bg);border-top:1px solid var(--line);padding:12px 0;display:flex;align-items:center;gap:12px;margin-top:14px}
+.status{font-size:14px}
+.status.ok{color:var(--ok)}.status.bad{color:var(--err)}
+
+@media (min-width:760px){
+  .wrap{padding:0 24px}
+  .kpis{grid-template-columns:1.4fr 1fr 1fr 1fr}
+  .grid.two{grid-template-columns:1fr 1fr}
+  .grid.side{grid-template-columns:1fr 1.6fr}
+  .tbl{margin:0;padding:0}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login" id="login" hidden>
+  <form id="loginForm" novalidate>
+    <h1>Rakumi Data admin</h1>
+    <p class="sub">Sign in to see visitors and edit offer links.</p>
+    <p class="alert bad" id="loginErr" role="alert" hidden></p>
+    <div class="field"><label for="u">Username</label><input id="u" name="user" autocomplete="username" required></div>
+    <div class="field"><label for="p">Password</label><input id="p" name="pass" type="password" autocomplete="current-password" required></div>
+    <button class="primary" type="submit" style="width:100%">Sign in</button>
+  </form>
+</div>
+
+<!-- APP -->
+<div id="app" hidden>
+  <div class="wrap">
+    <header class="bar">
+      <h1><i aria-hidden="true">R</i>Rakumi Data</h1>
+      <div class="acts">
+        <span class="updated" id="updated"></span>
+        <button id="refresh" type="button">Refresh</button>
+        <button class="link" id="logout" type="button">Log out</button>
+      </div>
+    </header>
+
+    <p class="alert warn" id="memWarn" hidden><b>Storage not connected.</b> Stats and settings are kept in memory and will reset. In Vercel, open Storage → connect “Upstash for Redis” to this project, then redeploy.</p>
+    <p class="alert bad" id="loadErr" role="alert" hidden></p>
+
+    <nav class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-tab="stats" id="t-stats">Traffic</button>
+      <button role="tab" aria-selected="false" data-tab="settings" id="t-settings">Campaign settings</button>
+    </nav>
+
+    <!-- TRAFFIC -->
+    <section id="stats" role="tabpanel" aria-labelledby="t-stats">
+      <div class="kpis">
+        <div class="card kpi hero"><div class="lbl">Unique visitors</div><div class="val num" id="k-uniques">–</div><div class="dlt num" id="k-uniques-d"></div></div>
+        <div class="card kpi"><div class="lbl">Page views</div><div class="val num" id="k-views">–</div><div class="dlt num" id="k-views-d"></div></div>
+        <div class="card kpi"><div class="lbl">Button clicks</div><div class="val num" id="k-clicks">–</div><div class="dlt num" id="k-clicks-d"></div></div>
+        <div class="card kpi"><div class="lbl">Click-through rate</div><div class="val num" id="k-ctr">–</div><div class="dlt" id="k-ctr-d">unique clickers ÷ unique visitors</div></div>
+      </div>
+
+      <div class="grid side">
+        <div class="card">
+          <h2>Clicks by network</h2>
+          <p class="cap">All time</p>
+          <div id="netBars"></div>
+        </div>
+        <div class="card">
+          <div class="rowhead">
+            <div><h2>Last 14 days</h2><p class="cap" style="margin:0">Lagos time</p></div>
+            <div class="seg" role="group" aria-label="Chart view"><button type="button" aria-pressed="true" data-view="chart">Chart</button><button type="button" aria-pressed="false" data-view="table">Table</button></div>
+          </div>
+          <div id="dailyCharts">
+            <p class="cap" style="margin:0 0 4px;font-weight:650;color:var(--ink-2)">Unique visitors per day</p>
+            <div class="chart" id="chVisits"></div>
+            <p class="cap" style="margin:16px 0 4px;font-weight:650;color:var(--ink-2)">Button clicks per day</p>
+            <div class="chart" id="chClicks"></div>
+          </div>
+          <div class="tbl" id="dailyTable" hidden></div>
+        </div>
+      </div>
+
+      <div class="grid side">
+        <div class="card">
+          <h2>Traffic sources</h2>
+          <p class="cap">Add <b>?src=facebook</b> (or tiktok, whatsapp…) to the links you share to see which channel converts.</p>
+          <div class="tbl" id="sources"></div>
+        </div>
+        <div class="card">
+          <div class="rowhead">
+            <div><h2>Recent activity</h2><p class="cap" style="margin:0">Last 200 events</p></div>
+            <div class="seg" role="group" aria-label="Filter events"><button type="button" aria-pressed="true" data-f="all">All</button><button type="button" aria-pressed="false" data-f="c">Clicks</button><button type="button" aria-pressed="false" data-f="v">Visits</button></div>
+          </div>
+          <div class="tbl" id="events"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section id="settings" role="tabpanel" aria-labelledby="t-settings" hidden>
+      <form id="cfgForm" novalidate>
+        <div class="grid two">
+          <div class="card links">
+            <h2>Offer links</h2>
+            <p class="cap">Where each network button sends visitors. Changes go live for everyone within seconds. Use <b>{clickid}</b> and <b>{source}</b> in a link to pass your sub-IDs to the CPA network.</p>
+            <div id="linkFields"></div>
+          </div>
+          <div>
+            <div class="card" style="margin-bottom:14px">
+              <h2>Page details</h2>
+              <p class="cap">Shown on the landing page.</p>
+              <div class="field">
+                <label for="subs">Subscriber count</label>
+                <input id="subs" type="number" min="0" step="1" inputmode="numeric">
+                <p class="hint">Your real subscriber number from the CPA dashboard. Set 0 to hide it.</p>
+              </div>
+              <div class="field" style="margin:0">
+                <label for="price">Price &amp; terms line</label>
+                <textarea id="price" maxlength="240"></textarea>
+                <p class="hint">E.g. “₦100/day, auto-renews.” Shown under the buttons and in the FAQ.</p>
+              </div>
+            </div>
+            <div class="card">
+              <h2>Testimonials</h2>
+              <p class="cap">Add feedback from real subscribers. The section stays hidden until you add one.</p>
+              <div id="tsts"></div>
+              <button type="button" id="addTst">Add testimonial</button>
+            </div>
+          </div>
+        </div>
+        <div class="savebar">
+          <button class="primary" type="submit" id="saveBtn">Save changes</button>
+          <span class="status" id="saveStatus" role="status"></span>
+        </div>
+      </form>
+    </section>
+    <div style="height:32px"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var NETS=[['mtn','MTN'],['airtel','Airtel'],['glo','Glo']];
+  var NAME={mtn:'MTN',airtel:'Airtel',glo:'Glo'};
+  var $=function(id){return document.getElementById(id)};
+  var fmt=function(n){return Number(n||0).toLocaleString('en-NG')};
+  var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return'&#'+c.charCodeAt(0)+';'})};
+  var stats=null,evFilter='all',timer=null;
+
+  function api(path,opts){
+    opts=opts||{};
+    return fetch(path,{method:opts.method||'GET',headers:opts.body?{'Content-Type':'application/json'}:{},body:opts.body?JSON.stringify(opts.body):undefined,credentials:'same-origin'})
+      .then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(r.status===401&&path!=='/api/admin/session'){showLogin();throw new Error('auth')}if(!r.ok){var e=new Error(j.error||('HTTP '+r.status));e.data=j;throw e}return j})});
+  }
+
+  // ---------- auth ----------
+  function showLogin(){clearInterval(timer);$('app').hidden=true;$('login').hidden=false;$('u').focus()}
+  function showApp(){$('login').hidden=true;$('app').hidden=false;loadStats();loadConfig();clearInterval(timer);timer=setInterval(loadStats,30000)}
+
+  $('loginForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var btn=e.target.querySelector('button'),err=$('loginErr');
+    if(!$('u').value||!$('p').value){err.textContent='Enter your username and password.';err.hidden=false;return}
+    btn.disabled=true;btn.textContent='Signing in…';err.hidden=true;
+    api('/api/admin/session',{method:'POST',body:{user:$('u').value.trim(),pass:$('p').value}})
+      .then(function(){$('p').value='';showApp()})
+      .catch(function(x){err.textContent=x.message==='auth'?'Wrong username or password.':x.message;err.hidden=false})
+      .finally(function(){btn.disabled=false;btn.textContent='Sign in'});
+  });
+  $('logout').addEventListener('click',function(){api('/api/admin/session',{method:'DELETE'}).finally(showLogin)});
+
+  // ---------- tabs ----------
+  document.querySelectorAll('[role=tab]').forEach(function(t){
+    t.addEventListener('click',function(){
+      document.querySelectorAll('[role=tab]').forEach(function(o){var on=o===t;o.setAttribute('aria-selected',on);$(o.dataset.tab).hidden=!on});
+    });
+  });
+
+  // ---------- stats ----------
+  $('refresh').addEventListener('click',loadStats);
+  function loadStats(){
+    var b=$('refresh');b.disabled=true;b.textContent='Loading…';
+    api('/api/admin/stats').then(function(s){
+      stats=s;$('loadErr').hidden=true;renderStats();
+      $('updated').textContent='Updated '+new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+    }).catch(function(x){if(x.message!=='auth'){$('loadErr').textContent=x.message;$('loadErr').hidden=false}})
+      .finally(function(){b.disabled=false;b.textContent='Refresh'});
+  }
+
+  function renderStats(){
+    var s=stats,t=s.totals,today=s.daily[s.daily.length-1]||{},yest=s.daily[s.daily.length-2]||{};
+    $('memWarn').hidden=s.storage!=='memory';
+    $('k-uniques').textContent=fmt(t.uniques);
+    $('k-uniques-d').textContent=fmt(today.uniques)+' today · '+fmt(yest.uniques)+' yesterday';
+    $('k-views').textContent=fmt(t.views);
+    $('k-views-d').textContent=fmt(today.views)+' today';
+    $('k-clicks').textContent=fmt(t.clicks);
+    $('k-clicks-d').textContent=fmt(today.clicks)+' today';
+    $('k-ctr').textContent=t.uniques?(Math.min(100,t.clickers/t.uniques*100)).toFixed(1)+'%':'–';
+
+    // network bars: one series, one colour; brand swatch only identifies the row
+    var max=Math.max(1,s.networks.mtn,s.networks.airtel,s.networks.glo),sum=s.networks.mtn+s.networks.airtel+s.networks.glo;
+    $('netBars').innerHTML=NETS.map(function(n){
+      var v=s.networks[n[0]];
+      return '<div class="nb"><span class="nm"><span class="sw" style="background:var(--'+n[0]+')"></span>'+n[1]+'</span><span class="track"><span class="fill" style="width:'+(v/max*100)+'%"></span></span><span class="v num">'+fmt(v)+'<small>'+(sum?Math.round(v/sum*100):0)+'%</small></span></div>';
+    }).join('');
+
+    columns($('chVisits'),s.daily,'uniques','--s-views','visitors');
+    columns($('chClicks'),s.daily,'clicks','--s-clicks','clicks');
+
+    $('dailyTable').innerHTML='<table><thead><tr><th>Day</th><th class="r">Unique</th><th class="r">Views</th><th class="r">Clicks</th><th class="r">MTN</th><th class="r">Airtel</th><th class="r">Glo</th></tr></thead><tbody>'+
+      s.daily.slice().reverse().map(function(d){return '<tr><td>'+dayLabel(d.day)+'</td><td class="r num">'+fmt(d.uniques)+'</td><td class="r num">'+fmt(d.views)+'</td><td class="r num">'+fmt(d.clicks)+'</td><td class="r num">'+fmt(d.mtn)+'</td><td class="r num">'+fmt(d.airtel)+'</td><td class="r num">'+fmt(d.glo)+'</td></tr>'}).join('')+'</tbody></table>';
+
+    $('sources').innerHTML=s.sources.length?'<table><thead><tr><th>Source</th><th class="r">Visits</th><th class="r">Clicks</th><th class="r">Rate</th></tr></thead><tbody>'+
+      s.sources.map(function(r){return '<tr><td>'+esc(r.source)+'</td><td class="r num">'+fmt(r.visits)+'</td><td class="r num">'+fmt(r.clicks)+'</td><td class="r num">'+(r.visits?(r.clicks/r.visits*100).toFixed(1)+'%':'–')+'</td></tr>'}).join('')+'</tbody></table>'
+      :'<p class="empty">No traffic yet. Share your link to get started.</p>';
+    renderEvents();
+  }
+
+  function renderEvents(){
+    var ev=stats.events.filter(function(e){return evFilter==='all'||e.t===evFilter});
+    $('events').innerHTML=ev.length?'<table><thead><tr><th>When</th><th>Event</th><th>Source</th><th>Device</th><th>Location</th><th>Click ID</th></tr></thead><tbody>'+
+      ev.map(function(e){
+        var loc=[e.ci,e.c].filter(Boolean).join(', ')||'–';
+        var what=e.t==='c'?'<span class="pill c"><span class="sw" style="background:var(--'+e.n+')"></span>Click · '+NAME[e.n]+'</span>':'<span class="pill">Visit</span>';
+        return '<tr><td class="num">'+when(e.ts)+'</td><td>'+what+'</td><td>'+esc(e.s||'direct')+'</td><td>'+esc(e.d||'–')+'</td><td>'+esc(loc)+'</td><td class="num">'+esc(e.id||'')+'</td></tr>';
+      }).join('')+'</tbody></table>':'<p class="empty">Nothing here yet.</p>';
+  }
+  document.querySelectorAll('[data-f]').forEach(function(b){b.addEventListener('click',function(){
+    evFilter=b.dataset.f;document.querySelectorAll('[data-f]').forEach(function(o){o.setAttribute('aria-pressed',o===b)});if(stats)renderEvents();
+  })});
+  document.querySelectorAll('[data-view]').forEach(function(b){b.addEventListener('click',function(){
+    var tbl=b.dataset.view==='table';$('dailyCharts').hidden=tbl;$('dailyTable').hidden=!tbl;
+    document.querySelectorAll('[data-view]').forEach(function(o){o.setAttribute('aria-pressed',o===b)});
+  })});
+
+  function dayLabel(d){var x=new Date(d+'T12:00:00Z');return x.toLocaleDateString('en-GB',{day:'numeric',month:'short',timeZone:'UTC'})}
+  function when(ts){
+    var d=new Date(ts),m=Math.round((Date.now()-ts)/6e4);
+    if(m<1)return'just now';if(m<60)return m+' min ago';
+    return d.toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+  }
+  function nice(v){if(v<=4)return 4;var p=Math.pow(10,Math.floor(Math.log10(v))),f=v/p;return(f<=1?1:f<=2?2:f<=5?5:10)*p}
+  function compact(v){return v>=1e3?(v/1e3).toFixed(v%1e3?1:0).replace(/\.0$/,'')+'K':String(v)}
+
+  // Single-series column chart with hover tooltips.
+  function columns(el,rows,key,colorVar,unit){
+    var W=560,H=150,L=34,B=22,T=8,n=rows.length,band=(W-L)/n,bw=Math.min(24,band-6);
+    var top=nice(Math.max.apply(null,rows.map(function(r){return r[key]}))),y=function(v){return T+(H-T-B)*(1-v/top)};
+    var g='';
+    [0,top/2,top].forEach(function(v){g+='<line class="gl" x1="'+L+'" x2="'+W+'" y1="'+y(v)+'" y2="'+y(v)+'"/><text x="'+(L-8)+'" y="'+(y(v)+4)+'" text-anchor="end">'+compact(v)+'</text>'});
+    rows.forEach(function(r,i){
+      var x=L+band*i+(band-bw)/2,v=r[key],yy=y(v),h=H-B-yy,rad=Math.min(4,h);
+      g+='<rect class="hit" x="'+(L+band*i)+'" y="'+T+'" width="'+band+'" height="'+(H-T-B)+'" data-i="'+i+'"/>';
+      g+=h>0?'<path class="mk" fill="var('+colorVar+')" d="M'+x+','+(H-B)+'V'+(yy+rad)+'q0,-'+rad+' '+rad+',-'+rad+'h'+(bw-2*rad)+'q'+rad+',0 '+rad+','+rad+'V'+(H-B)+'z"/>':'<g class="mk"></g>';
+      if(i%2===(n-1)%2)g+='<text x="'+(x+bw/2)+'" y="'+(H-6)+'" text-anchor="middle">'+dayLabel(r.day).replace(' ',' ')+'</text>';
+    });
+    el.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+unit+' per day, last 14 days">'+g+'</svg><div class="tip" hidden></div>';
+    var tip=el.querySelector('.tip');
+    el.querySelectorAll('.hit').forEach(function(h){
+      function show(){
+        var i=+h.dataset.i,r=rows[i],svg=el.querySelector('svg').getBoundingClientRect(),k=svg.width/W;
+        tip.innerHTML='<b>'+fmt(r[key])+' '+unit+'</b>'+dayLabel(r.day);
+        tip.style.left=((L+band*i+band/2)*k)+'px';tip.style.top=(y(r[key])*k)+'px';tip.hidden=false;
+      }
+      h.addEventListener('mouseenter',show);h.addEventListener('touchstart',show,{passive:true});
+      h.addEventListener('mouseleave',function(){tip.hidden=true});
+    });
+  }
+
+  // ---------- settings ----------
+  var origin=location.origin;
+  $('linkFields').innerHTML=NETS.map(function(n){
+    return '<div class="lk"><div class="top"><span class="sw" style="background:var(--'+n[0]+')"></span><label for="l-'+n[0]+'" style="margin:0">'+n[1]+' offer link</label></div>'+
+      '<input id="l-'+n[0]+'" type="url" inputmode="url" placeholder="https://…" autocomplete="off" spellcheck="false">'+
+      '<p class="err" id="e-'+n[0]+'" hidden></p>'+
+      '<code>Button goes to: '+origin+'/go/'+n[0]+'</code></div>';
+  }).join('');
+
+  function tstRow(t){
+    t=t||{};
+    var d=document.createElement('div');d.className='tst';
+    d.innerHTML='<div class="r2"><div><label>Name</label><input data-k="name" maxlength="40" value="'+esc(t.name)+'"></div><div><label>City</label><input data-k="city" maxlength="40" value="'+esc(t.city)+'"></div></div>'+
+      '<div><label>Network</label><select data-k="network"><option value="">—</option>'+NETS.map(function(n){return'<option value="'+n[0]+'"'+(t.network===n[0]?' selected':'')+'>'+n[1]+'</option>'}).join('')+'</select></div>'+
+      '<div><label>What they said</label><textarea data-k="text" maxlength="280">'+esc(t.text)+'</textarea></div>'+
+      '<div><button type="button" class="link" data-rm>Remove</button></div>';
+    d.querySelector('[data-rm]').addEventListener('click',function(){d.remove()});
+    $('tsts').appendChild(d);
+  }
+  $('addTst').addEventListener('click',function(){tstRow();var last=$('tsts').lastElementChild;last.querySelector('input').focus()});
+
+  function loadConfig(){
+    api('/api/admin/config').then(function(c){
+      NETS.forEach(function(n){$('l-'+n[0]).value=c.links[n[0]]||''});
+      $('subs').value=c.subscribers||0;$('price').value=c.priceNote||'';
+      $('tsts').innerHTML='';(c.testimonials||[]).forEach(tstRow);
+    }).catch(function(){});
+  }
+
+  $('cfgForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var st=$('saveStatus'),btn=$('saveBtn'),links={},bad=false;
+    NETS.forEach(function(n){
+      var el=$('l-'+n[0]),v=el.value.trim(),er=$('e-'+n[0]),ok=!v||/^https?:\/\/\S+$/i.test(v);
+      links[n[0]]=v;el.setAttribute('aria-invalid',!ok);er.hidden=ok;er.textContent=ok?'':'Must start with https:// and contain no spaces';if(!ok)bad=true;
+    });
+    if(bad){st.className='status bad';st.textContent='Fix the highlighted links.';return}
+    var tests=[].map.call($('tsts').children,function(d){var o={};d.querySelectorAll('[data-k]').forEach(function(f){o[f.dataset.k]=f.value.trim()});return o}).filter(function(t){return t.name||t.text});
+    if(tests.some(function(t){return!t.name||!t.text})){st.className='status bad';st.textContent='Each testimonial needs a name and text.';return}
+    btn.disabled=true;btn.textContent='Saving…';st.textContent='';
+    api('/api/admin/config',{method:'PUT',body:{links:links,subscribers:$('subs').value,priceNote:$('price').value.trim(),testimonials:tests}})
+      .then(function(){st.className='status ok';st.textContent='Saved. Live on the page within ~20 seconds.'})
+      .catch(function(x){
+        st.className='status bad';st.textContent=x.message;
+        var f=(x.data||{}).fields||{};Object.keys(f).forEach(function(k){$('l-'+k).setAttribute('aria-invalid',true);$('e-'+k).textContent=f[k];$('e-'+k).hidden=false});
+      })
+      .finally(function(){btn.disabled=false;btn.textContent='Save changes'});
+  });
+
+  // ---------- boot ----------
+  api('/api/admin/session').then(function(r){r.ok?showApp():showLogin()}).catch(showLogin);
+})();
+</script>
+</body>
+</html>
