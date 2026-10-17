@@ -3,7 +3,7 @@ import crypto from 'node:crypto';
 // Admin login. These defaults live on the server only (never sent to the
 // browser). Override them in Vercel → Settings → Environment Variables.
 const ADMIN_USER = process.env.ADMIN_USER || 'admin';
-const ADMIN_PASS = process.env.ADMIN_PASS || 'Rakumi@2026';
+const ADMIN_PASS = process.env.ADMIN_PASS || 'demo';
 const SECRET = process.env.ADMIN_SECRET || crypto.createHash('sha256').update(`rk:${ADMIN_USER}:${ADMIN_PASS}`).digest('hex');
 
 const COOKIE = 'rk_admin';
